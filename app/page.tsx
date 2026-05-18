@@ -163,7 +163,7 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ЗБІР ГОСТЕЙ</h3>
-              <div style={{ backgroundImage: "url('/sasa/i6.png')" }} className="w-15 h-15 mx-auto bg-[#fffdeb] ">
+              <div style={{ backgroundImage: "url('/sasa/glass.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center ">
 
               </div>
               <h3 className="flex items-center justify-center">15:30</h3>
@@ -171,14 +171,14 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ЦЕРЕМОНІЯ</h3>
-              <div style={{ backgroundImage: "url('/sasa/i7.png')" }}  className="w-15 h-15 mx-auto bg-[#fffdeb] ">
+              <div style={{ backgroundImage: "url('/sasa/wedding.svg')" }}  className="w-15 h-15 mx-auto bg-cover bg-center ">
               </div>
               <h3 className="flex items-center justify-center">16:00</h3>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">БАНКЕТ</h3>
-              <div style={{ backgroundImage: "url('/sasa/i8.png')" }} className="w-15 h-15 mx-auto bg-[#fffdeb] ">
+              <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
               </div>
               <h3 className="flex items-center justify-center">18:00</h3>
             </div>
