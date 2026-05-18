@@ -1,4 +1,4 @@
-:HL["/sasa/_next/static/chunks/0ga6d75z-gar2.css","style"]
+:HL["/sasa/_next/static/chunks/0507jcd4zplau.css","style"]
 :HL["https://fonts.googleapis.com/css2?family=Tangerine&display=swap","style"]
 :HL["https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"uLPRda8uWvM45kz7-QvjS"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"Ra_halkrgfsu6ljlR-1oX"}

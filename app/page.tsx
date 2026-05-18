@@ -368,7 +368,7 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const base = "/sasa"; // 👈 ВАЖЛИВО для GitHub Pages
+  const base = "./sasa"; // 👈 ВАЖЛИВО для GitHub Pages
 
   let array = ["ПН", "ВТ", "CP", "ЧТ", "ПТ", "СБ", "НД"];
   let days = Array.from({ length: 31 }, (_, i) => i + 1);
