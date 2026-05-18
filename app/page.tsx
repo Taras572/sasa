@@ -368,7 +368,6 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const base = "./sasa"; // 👈 ВАЖЛИВО для GitHub Pages
 
   let array = ["ПН", "ВТ", "CP", "ЧТ", "ПТ", "СБ", "НД"];
   let days = Array.from({ length: 31 }, (_, i) => i + 1);
@@ -441,7 +440,7 @@ export default function Home() {
 
         {/* HERO */}
         <div
-          style={{ backgroundImage: `url('${base}/i1.jpg')` }}
+          style={{ backgroundImage: `url('./sasa/i1.jpg')` }}
           className="h-[600px] bg-cover bg-center flex items-center justify-center"
         >
           <h1 className="mt-[-250px] text-olive-300 font-['Tangerine',cursive] text-[100px] text-center leading-none">
@@ -452,7 +451,7 @@ export default function Home() {
         {/* TEXT */}
         <div className="relative flex flex-col gap-y-[50px]">
           <div className="absolute z-[999] top-[-30px]">
-            <img src={`${base}/i4.png`} alt="" />
+            <img src={`/sasa/i4.png`} alt="" />
           </div>
 
           <div className="ml-[20px] mr-[20px]">
@@ -486,7 +485,7 @@ export default function Home() {
                 <div key={day} className="w-10 h-10 flex items-center justify-center">
                   {day === 20 ? (
                     <div
-                      style={{ backgroundImage: `url('${base}/i5.jpg')` }}
+                      style={{ backgroundImage: `url('/sasa/i5.jpg')` }}
                       className="h-[47px] w-[47px] bg-cover bg-center flex items-center justify-center text-red-500"
                     >
                       {day}
@@ -502,7 +501,7 @@ export default function Home() {
           {/* LOCATION */}
           <div className="bg-[#233c1a] relative pt-[90px] text-[#fffdeb] pb-[90px]">
             <div className="absolute z-[999] top-[-30px]">
-              <img src={`${base}/i4.png`} alt="" />
+              <img src={`/sasa/i4.png`} alt="" />
             </div>
 
             <div className="pb-[30px]">
@@ -512,10 +511,10 @@ export default function Home() {
               <p>Navaria Village, Наварія, Львівська область, Україна</p>
             </div>
 
-            <img src={`${base}/i3.png`} alt="" />
+            <img src={`/sasa/i3.png`} alt="" />
 
             <div className="absolute z-[999] bottom-[-40px]">
-              <img src={`${base}/i4.png`} alt="" />
+              <img src={`/sasa/i4.png`} alt="" />
             </div>
           </div>
 
@@ -523,7 +522,7 @@ export default function Home() {
           <div className="bg-[#233c1a] relative pt-[90px] text-[#fffdeb] pb-[90px] flex flex-col gap-y-[40px] text-xl">
 
             <div className="absolute z-[999] top-[-30px]">
-              <img src={`${base}/i4.png`} alt="" />
+              <img src={`/sasa/i4.png`} alt="" />
             </div>
 
             <h2 className="font-['Great_Vibes',cursive] text-[50px]">
@@ -532,24 +531,24 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ЗБІР ГОСТЕЙ</h3>
-              <div style={{ backgroundImage: `url('${base}/i6.png')` }} />
+              <div style={{ backgroundImage: `url('/sasa/i6.png')` }} />
               <h3>15:30</h3>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ЦЕРЕМОНІЯ</h3>
-              <div style={{ backgroundImage: `url('${base}/i7.png')` }} />
+              <div style={{ backgroundImage: `url('/sasa/i7.png')` }} />
               <h3>16:00</h3>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">БАНКЕТ</h3>
-              <div style={{ backgroundImage: `url('${base}/i8.png')` }} />
+              <div style={{ backgroundImage: `url('/sasa/i8.png')` }} />
               <h3>18:00</h3>
             </div>
 
             <div className="absolute z-[999] bottom-[-40px]">
-              <img src={`${base}/i4.png`} alt="" />
+              <img src={`/sasa/i4.png`} alt="" />
             </div>
           </div>
 
@@ -559,7 +558,7 @@ export default function Home() {
               Побажання
             </h2>
 
-            <img className="mx-auto h-[80px]" src={`${base}/i9.png`} alt="" />
+            <img className="mx-auto h-[80px]" src={`/sasa/i9.png`} alt="" />
 
             <p>
               Просимо вас не дарувати нам квіти...
@@ -568,7 +567,7 @@ export default function Home() {
 
           {/* COUNTDOWN */}
           <div
-            style={{ backgroundImage: `url('${base}/i10.jpg')` }}
+            style={{ backgroundImage: `url('/sasa/i10.jpg')` }}
             className="relative h-[600px] bg-cover bg-center flex flex-col gap-20 text-white"
           >
             <h1 className="text-[30px] mt-[90px]">
@@ -626,7 +625,7 @@ export default function Home() {
           </div>
 
           {/* FINAL */}
-          <div style={{ backgroundImage: `url('${base}/i2.jpg')` }} className="h-[600px] bg-cover bg-center text-white">
+          <div style={{ backgroundImage: `url('/sasa/i2.jpg')` }} className="h-[600px] bg-cover bg-center text-white">
             <h2 className="pt-[60px] font-['Great_Vibes',cursive] text-[35px]">
               Будемо раді бачити вас!
             </h2>
