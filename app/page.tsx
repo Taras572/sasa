@@ -149,7 +149,7 @@ export default function Home() {
               {days.map((day, index) => (
                 <div key={day} className="w-10 h-10 flex items-center justify-center">
                   {day === 20 ? (
-                    <div className="animate-sway h-[47px] w-[47px] bg-[url('/i5.svg')] bg-cover bg-center flex items-center justify-center text-red-500">
+                    <div style={{ backgroundImage: "url('/i5.jpg')" }} className="animate-sway h-[47px] w-[47px] bg-cover bg-center flex items-center justify-center text-red-500">
                       {day}
                     </div>
                   ) : (
@@ -195,21 +195,21 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ЗБІР ГОСТЕЙ</h3>
-              <div className="w-15 h-15 mx-auto bg-[#fffdeb] [mask-image:url('/i6.png')] [mask-size:contain] [mask-repeat:no-repeat] ">
+              <div style={{ backgroundImage: "url('/i6.jpg')" }} className="w-15 h-15 mx-auto bg-[#fffdeb] [mask-size:contain] [mask-repeat:no-repeat] ">
               </div>
               <h3 className="flex items-center justify-center">15:30</h3>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ЦЕРЕМОНІЯ</h3>
-              <div className="w-15 h-15 mx-auto bg-[#fffdeb] [mask-image:url('/i7.png')] [mask-size:contain] [mask-repeat:no-repeat] ">
+              <div style={{ backgroundImage: "url('/i7.jpg')" }}  className="w-15 h-15 mx-auto bg-[#fffdeb] [mask-size:contain] [mask-repeat:no-repeat] ">
               </div>
               <h3 className="flex items-center justify-center">16:00</h3>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">БАНКЕТ</h3>
-              <div className="w-15 h-15 mx-auto bg-[#fffdeb] [mask-image:url('/i8.png')] [mask-size:contain] [mask-repeat:no-repeat] ">
+              <div style={{ backgroundImage: "url('/i8.jpg')" }} className="w-15 h-15 mx-auto bg-[#fffdeb] [mask-size:contain] [mask-repeat:no-repeat] ">
               </div>
               <h3 className="flex items-center justify-center">18:00</h3>
             </div>
