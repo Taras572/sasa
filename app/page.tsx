@@ -195,21 +195,22 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ЗБІР ГОСТЕЙ</h3>
-              <div style={{ backgroundImage: "url('/i6.jpg')" }} className="w-15 h-15 mx-auto bg-[#fffdeb] [mask-size:contain] [mask-repeat:no-repeat] ">
+              <div style={{ backgroundImage: "url('/i6.png')" }} className="w-15 h-15 mx-auto bg-[#fffdeb] ">
+
               </div>
               <h3 className="flex items-center justify-center">15:30</h3>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ЦЕРЕМОНІЯ</h3>
-              <div style={{ backgroundImage: "url('/i7.jpg')" }}  className="w-15 h-15 mx-auto bg-[#fffdeb] [mask-size:contain] [mask-repeat:no-repeat] ">
+              <div style={{ backgroundImage: "url('/i7.png')" }}  className="w-15 h-15 mx-auto bg-[#fffdeb] ">
               </div>
               <h3 className="flex items-center justify-center">16:00</h3>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">БАНКЕТ</h3>
-              <div style={{ backgroundImage: "url('/i8.jpg')" }} className="w-15 h-15 mx-auto bg-[#fffdeb] [mask-size:contain] [mask-repeat:no-repeat] ">
+              <div style={{ backgroundImage: "url('/i8.png')" }} className="w-15 h-15 mx-auto bg-[#fffdeb] ">
               </div>
               <h3 className="flex items-center justify-center">18:00</h3>
             </div>
@@ -309,7 +310,7 @@ export default function Home() {
                 checked={attending}
                 onChange={() => setAttending(!attending)}
               />
-              <label>Їбав я вас і ваше весілля</label>
+              <label>Памятайте моє добре серце бо я передумав</label>
             </div>
 
             {/* Алкоголь */}
