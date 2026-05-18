@@ -109,7 +109,7 @@ export default function Home() {
     <div className="min-h-screen flex  justify-center">
       <div className="b w-[500px] text-center bg-[#fffdeb]">
 
-        <div className="h-[600px]  bg-cover bg-center bg-[url('/i1.jpg')] flex items-center justify-center">
+        <div style={{ backgroundImage: "url('/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center">
           <h1 className="mt-[-250px] text-olive-300 font-['Tangerine',cursive] text-[100px] text-center leading-none">
             <span>Alexander</span> <span>&</span> <span>Natalia</span>
           </h1>
@@ -231,7 +231,7 @@ export default function Home() {
           </div>
 
           {/* ---------------------------------------------------------------------------------------- */}
-          <div className="position: relative h-[600px]  bg-cover bg-center bg-[url('/i10.jpg')] flex flex-col gap-20 text-white">
+          <div style={{ backgroundImage: "url('/i10.jpg')" }} className="position: relative h-[600px]  bg-cover bg-center flex flex-col gap-20 text-white">
             <div className="position: absolute z-[999] top-[-30px]">
               <img src="/i4.png" alt="" />
             </div>
@@ -338,7 +338,7 @@ export default function Home() {
           </div>
 
           {/* --------------------------------------------------------------- */}
-          <div className="position: relative h-[600px]  bg-cover bg-center bg-[url('/i2.jpg')]  text-white">
+          <div style={{ backgroundImage: "url('/i2.jpg')" }} className=" position: relative h-[600px]  bg-cover bg-center text-white" >
             <div className="position: absolute z-[999] top-[-30px]">
               <img src="/i4.png" alt="" />
             </div>
