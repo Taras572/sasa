@@ -440,7 +440,7 @@ export default function Home() {
 
         {/* HERO */}
         <div
-          style={{ backgroundImage: `url('./sasa/i1.jpg')` }}
+          style={{ backgroundImage: `url('/sasa/i1.jpg')` }}
           className="h-[600px] bg-cover bg-center flex items-center justify-center"
         >
           <h1 className="mt-[-250px] text-olive-300 font-['Tangerine',cursive] text-[100px] text-center leading-none">
