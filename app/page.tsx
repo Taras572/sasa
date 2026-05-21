@@ -126,45 +126,44 @@ export default function Home() {
   //   }
   // };
   const submitForm = async () => {
-  setError("");
+    setError("");
 
-  if (!name.trim()) {
-    setError("Введіть ім’я");
-    return;
-  }
+    if (!name.trim()) {
+      setError("Введіть ім’я");
+      return;
+    }
 
-  if (attending === null) {
-    setError("Оберіть варіант: буду / не буду");
-    return;
-  }
+    if (attending === null) {
+      setError("Оберіть варіант: буду / не буду");
+      return;
+    }
 
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbyvXOBVHSQm7W19FSodu6Y3Wo8fk0VKHRaUnle9L0YusIR1n0hpTuDunxgl3V_9y-ad/exec",
-      {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify({
-          name,
-          attending,
-          alcohol,
-        }),
-      }
-    );
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbyvXOBVHSQm7W19FSodu6Y3Wo8fk0VKHRaUnle9L0YusIR1n0hpTuDunxgl3V_9y-ad/exec",
+        {
+          method: "POST",
+          body: new URLSearchParams({
+            name: name,
+            attending: String(attending),
+            alcohol: JSON.stringify(alcohol),
+          }),
+        }
+      );
 
-    alert("Дякуємо! 🙌");
+      alert("Дякуємо! 🙌");
 
-    setName("");
-    setAttending(null);
-    setAlcohol([]);
-  } catch (err) {
-    setError("Сервер не відповідає");
-  } finally {
-    setLoading(false);
-  }
-};
+      setName("");
+      setAttending(null);
+      setAlcohol([]);
+    } catch (err) {
+      setError("Сервер не відповідає");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex  justify-center">
