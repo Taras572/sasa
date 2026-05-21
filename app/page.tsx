@@ -17,7 +17,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    const weddingDate = new Date("2026-07-20T00:00:00").getTime();
+    const weddingDate = new Date("2026-07-18T00:00:00").getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -61,6 +61,7 @@ export default function Home() {
 
 
   const [name, setName] = useState("");
+  const [guest, setGuest] = useState("");
   const [attending, setAttending] = useState<"yes" | "no" | null>(null);
   const [alcohol, setAlcohol] = useState<string[]>([]);
 
@@ -76,55 +77,7 @@ export default function Home() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const submitForm = async () => {
-  //   setError("");
 
-  //   // 1. перевірка імені
-  //   if (!name.trim()) {
-  //     setError("Введіть ім’я");
-  //     return;
-  //   }
-
-  //   // 2. перевірка відповіді
-  //   if (attending === null) {
-  //     setError("Оберіть варіант: буду / не буду");
-  //     return;
-  //   }
-
-  //   try {
-  //     setLoading(true);
-
-  //     const res = await fetch(
-  //       "https://script.google.com/macros/s/AKfycbyvXOBVHSQm7W19FSodu6Y3Wo8fk0VKHRaUnle9L0YusIR1n0hpTuDunxgl3V_9y-ad/exec",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           name,
-  //           attending,
-  //           alcohol,
-  //         }),
-  //       }
-  //     );
-
-  //     const data = await res.json();
-
-  //     if (data.success) {
-  //       alert("Дякуємо! 🙌");
-  //       setName("");
-  //       setAttending(null);
-  //       setAlcohol([]);
-  //     } else {
-  //       setError("Помилка відправки");
-  //     }
-  //   } catch (err) {
-  //     setError("Сервер не відповідає");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const submitForm = async () => {
     setError("");
 
@@ -170,13 +123,14 @@ export default function Home() {
     <div className="min-h-screen flex  justify-center">
       <div className="b w-[500px] text-center bg-[#fffdeb]">
 
-        <div style={{ backgroundImage: "url('/sasa/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center">
-          <h1 className="mt-[-250px] text-olive-300 font-['Tangerine',cursive] text-[100px] text-center leading-none">
-            <span>Alexander</span> <span>&</span> <span>Natalia</span>
+        {/* <div style={{ backgroundImage: "url('/sasa/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center"> */}
+        <div style={{ backgroundImage: "url('/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center">
+          <h1 className="mt-[-380px] text-olive-300 font-['Great_Vibes',cursive] text-[100px] text-center leading-none">
+            <span>Олександр</span> <span>та</span> <span>Наталія</span>
           </h1>
         </div>
 
-        <div className="position: relative flex flex-col gap-y-[50px]"> {/* контейнер  */}
+        <div className="position: relative flex flex-col gap-y-[30px]"> {/* контейнер  */}
           <div className="position: absolute z-[999] top-[-30px]">
             <img src="/sasa/i4.png" alt="" />
           </div>
@@ -207,10 +161,12 @@ export default function Home() {
               ))}
             </div>
             <div className="grid grid-cols-7 gap-2">
+              <div className="w-10 h-10 flex items-center justify-center"></div>
+              <div className="w-10 h-10 flex items-center justify-center"></div>
               {days.map((day, index) => (
                 <div key={day} className="w-10 h-10 flex items-center justify-center">
-                  {day === 20 ? (
-                    <div style={{ backgroundImage: "url('/sasa/i5.svg')" }} className="animate-sway h-[47px] w-[47px] bg-cover bg-center flex items-center justify-center text-red-500">
+                  {day === 18 ? (
+                    <div style={{ backgroundImage: "url('/i5.svg')" }} className="animate-sway h-[47px] w-[47px] bg-cover bg-center flex items-center justify-center text-red-500">
                       {day}
                     </div>
                   ) : (
@@ -226,9 +182,10 @@ export default function Home() {
 
           {/* ------------------------------------------------------------------------------------ */}
 
-          <div className="bg-[#233c1a] position: relative pt-[90px] text-[#fffdeb] pb-[90px]">
+          <div className="bg-[#507c53] position: relative pt-[90px] text-[#fffdeb] pb-[90px]">
             <div className="position: absolute z-[999] top-[-30px]">
-              <img src="/sasa/i4.png" alt="" />
+              {/* <img src="/sasa/i4.png" alt="" /> */}
+              <img src="/i4.png" alt="" />
             </div>
             <div className="pb-[30px]">
               <h2 className="font-['Great_Vibes',cursive] text-[50px] ">
@@ -236,18 +193,98 @@ export default function Home() {
               </h2>
               <p>Navaria Village, Наварія, Львівська область, Україна</p>
             </div>
-            <img src="/sasa/i3.png" alt="" />
+            <a href="https://maps.app.goo.gl/8TsKPmcxDb7uXvnm7" className="flex justify-center">
+              {/* <button
+                className=" w-[130px] text-[20px] mt-2 mb-3 bg-[#233c1a] text-[#fffdeb] p-2 rounded hover:opacity-90 disabled:opacity-50"
+
+              >
+                Локація
+              </button> */}
+
+
+              <button
+                className="
+                mb-4
+        group
+        relative
+        flex
+        h-11
+        w-[200px]
+        cursor-pointer
+        items-center
+        overflow-hidden
+        rounded-xl
+        border-0
+        bg-[#233c1a]
+        pl-5
+        pr-14
+        text-white
+        shadow-[inset_0_0_1.6em_-0.6em_#714da6]
+        transition-all
+      "
+              >
+                <span className="font-medium tracking-wide">
+                  Локація
+                </span>
+
+                <div
+                  className="
+          absolute
+          right-1
+          flex
+          h-9
+          w-9
+          items-center
+          justify-center
+          rounded-lg
+          bg-white
+          
+          transition-all
+          duration-300
+          group-hover:w-[calc(100%-0.5rem)]
+          active:scale-95
+        "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="
+            h-5
+            w-5
+            text-[#233c1a]
+            transition-transform
+            duration-300
+            group-hover:translate-x-1
+          "
+                  >
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
+                  </svg>
+                </div>
+              </button>
+
+
+
+
+
+
+            </a>
+            {/* <img src="/sasa/i3.png" alt="" /> */}
+            <img src="/i3.png" alt="" />
 
             <div className="position: absolute z-[999] bottom-[-40px]">
-              <img src="/sasa/i4.png" alt="" />
+              {/* <img src="/sasa/i4.png" alt="" /> */}
+              <img src="i4.png" alt="" />
             </div>
 
           </div>
           {/* ------------------------------------------------------------------------------------ */}
 
-          <div className="bg-[#233c1a] position: relative pt-[90px] text-[#fffdeb] pb-[90px] flex flex-col gap-y-[40px] text-xl">
+          <div className="bg-[#507c53] position: relative pt-[90px] text-[#fffdeb] pb-[90px] flex flex-col gap-y-[40px] text-xl">
             <div className="position: absolute z-[999] top-[-30px]">
-              <img src="/sasa/i4.png" alt="" />
+              {/* <img src="/sasa/i4.png" alt="" /> */}
+              <img src="/i4.png" alt="" />
             </div>
 
             <h2 className="font-['Great_Vibes',cursive] text-[50px] ">
@@ -255,30 +292,114 @@ export default function Home() {
             </h2>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
-              <h3 className="flex items-center justify-center">ЗБІР ГОСТЕЙ</h3>
-              <div style={{ backgroundImage: "url('/sasa/glass.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center ">
-
+              <h3 className="flex items-center justify-center">ВІНЧАННЯ</h3>
+              {/* <div style={{ backgroundImage: "url('/sasa/wedding.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center "></div> */}
+              <div style={{ backgroundImage: "url('/wedding.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center ">
               </div>
-              <h3 className="flex items-center justify-center">15:30</h3>
+              <h3 className="flex items-center justify-center">12:00</h3>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
-              <h3 className="flex items-center justify-center">ЦЕРЕМОНІЯ</h3>
-              <div style={{ backgroundImage: "url('/sasa/wedding.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center ">
+              <h3 className="flex items-center justify-center text-[15px]">Церква Різдва Пресвятої Богородиці УГКЦ</h3>
+              {/* <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
+              </div> */}
+              <div style={{ backgroundImage: "url('/church.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
               </div>
-              <h3 className="flex items-center justify-center">16:00</h3>
+              <a href="https://maps.app.goo.gl/whvCUaD3Pe1geg9K8?g_st=it">
+                {/* <button
+                  className=" w-[130px] text-[20px] mt-2 mb-3 bg-[#233c1a] text-[#fffdeb] p-2 rounded hover:opacity-90 disabled:opacity-50"
+
+                >
+                  Локація
+                </button> */}
+
+                <button
+                  className="
+        group
+        relative
+        flex
+        h-11
+        w-full
+        cursor-pointer
+        items-center
+        overflow-hidden
+        rounded-xl
+        border-0
+        bg-[#233c1a]
+        pl-5
+        pr-14
+        text-white
+        shadow-[inset_0_0_1.6em_-0.6em_#714da6]
+        transition-all
+      "
+                >
+                  <span className="font-medium tracking-wide">
+                    Локація
+                  </span>
+
+                  <div
+                    className="
+          absolute
+          right-1
+          flex
+          h-9
+          w-9
+          items-center
+          justify-center
+          rounded-lg
+          bg-white
+          
+          transition-all
+          duration-300
+          group-hover:w-[calc(100%-0.5rem)]
+          active:scale-95
+        "
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="
+            h-5
+            w-5
+            text-[#233c1a]
+            transition-transform
+            duration-300
+            group-hover:translate-x-1
+          "
+                    >
+                      <path d="M0 0h24v24H0z" fill="none" />
+                      <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
+                    </svg>
+                  </div>
+                </button>
+
+
+
+
+
+
+
+
+
+              </a>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">БАНКЕТ</h3>
-              <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
+              {/* <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
+              </div> */}
+              <div style={{ backgroundImage: "url('/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
               </div>
-              <h3 className="flex items-center justify-center">18:00</h3>
+              <h3 className="flex items-center justify-center">14:00</h3>
             </div>
 
 
+
+
             <div className="position: absolute z-[999] bottom-[-40px]">
-              <img src="/sasa/i4.png" alt="" />
+              <img src="/i4.png" alt="" />
+              {/* <img src="/sasa/i4.png" alt="" /> */}
             </div>
 
           </div>
@@ -287,15 +408,20 @@ export default function Home() {
             <h2 className="pt-[10px] font-['Great_Vibes',cursive] text-[50px] ">
               Побажання
             </h2>
-            <img className="mx-auto h-[80px]" src="/sasa/i9.png" alt="" />
+            <img className="mx-auto h-[80px]" src="/i9.png" alt="" />
+            {/* <img className="mx-auto h-[80px]" src="/sasa/i9.png" alt="" /> */}
             <p>Просимо вас не дарувати нам квіти, ми не встигнемо насолодитися їх красою.
-              Приємним компліментом для нас буде, якщо ви замість квітів вирішите подарувати нам пляшку алкогольного напою для нашої колекції, яку ми відкриємо на найближчому нашому сімейному святі.</p>
+              Замість букетів будемо щасливі отримати книгу
+              з Вашим підписом та побажанням —
+              на згадку про цей особливий день ❤️</p>
           </div>
 
           {/* ---------------------------------------------------------------------------------------- */}
-          <div style={{ backgroundImage: "url('/sasa/i10.jpg')" }} className="position: relative h-[600px]  bg-cover bg-center flex flex-col gap-20 text-white">
+          {/* <div style={{ backgroundImage: "url('/sasa/i10.jpg')" }} className="position: relative h-[600px]  bg-cover bg-center flex flex-col gap-20 text-white"> */}
+          <div style={{ backgroundImage: "url('/i10.jpg')" }} className="position: relative h-[600px]  bg-cover bg-center flex flex-col gap-20 text-white">
             <div className="position: absolute z-[999] top-[-30px]">
-              <img src="/sasa/i4.png" alt="" />
+              {/* <img src="/sasa/i4.png" alt="" /> */}
+              <img src="/i4.png" alt="" />
             </div>
             <h1 className="text-[30px] mt-[90px]">
               Чекаємо на вас через:
@@ -330,7 +456,8 @@ export default function Home() {
 
             </div>
             <div className="position: absolute z-[999] bottom-[-40px]">
-              <img src="/sasa/i4.png" alt="" />
+              <img src="/i4.png" alt="" />
+              {/* <img src="/sasa/i4.png" alt="" /> */}
             </div>
           </div>
           {/* --------------------------------------------------------------------------- */}
@@ -339,7 +466,6 @@ export default function Home() {
             <h2 className=" font-['Great_Vibes',cursive] text-[50px] ">
               Просимо відповісти на декілька запитань:
             </h2>
-            <p>Ваша думка не дуже важлива для нас, і ми її навіть не прочитаємо <span>&#128512;</span> але заповнити треба</p>
           </div>
 
 
@@ -368,8 +494,28 @@ export default function Home() {
                   checked={attending === "yes"}
                   onChange={() => setAttending("yes")}
                 />
-                Я планую бути на весіллі
+                Я розділю з вами цей день
               </label>
+
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="attending"
+                  checked={attending === "yes"}
+                  onChange={() => setAttending("yes")}
+                />
+                Я буду з
+              </label>
+              <div className="mb-4">
+                <input
+                  type="text"
+                  value={guest}
+                  // onChange={(e) => setName(e.target.value)}
+                  className="w-full border border-[#233c1a] p-2 rounded"
+                  placeholder="Імена гостей"
+                />
+              </div>
+
 
               <label className="flex items-center gap-2">
                 <input
@@ -378,29 +524,12 @@ export default function Home() {
                   checked={attending === "no"}
                   onChange={() => setAttending("no")}
                 />
-                А ніхуя
+                Я нажаль незможу
               </label>
 
             </div>
 
-            {/* Алкоголь */}
-            <div className="mb-4">
-              <p className="mb-2 mt-[20px]">Який алкоголь ви вибираєте:</p>
 
-
-              <div className="grid grid-cols-2 gap-2 mt-[20px]">
-                {["Горілка", "Віскі", "Вино", "Ром", "Шампанське"].map((item) => (
-                  <label key={item} className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked={alcohol.includes(item)}
-                      onChange={() => toggleAlcohol(item)}
-                    />
-                    {item}
-                  </label>
-                ))}
-              </div>
-            </div>
 
             {error && (
               <p className="text-red-600 mt-2 text-sm">
@@ -409,27 +538,97 @@ export default function Home() {
             )}
 
             {/* Кнопка */}
-            <button
+            {/* <button
               onClick={submitForm}
               disabled={loading}
               className="w-full mt-4 bg-[#233c1a] text-[#fffdeb] p-2 rounded hover:opacity-90 disabled:opacity-50"
             >
               {loading ? "Відправка..." : "Відправити"}
+            </button> */}
+
+
+
+
+            <button
+              className="
+        group
+        relative
+        flex
+        h-11
+        w-full
+        cursor-pointer
+        items-center
+        overflow-hidden
+        rounded-xl
+        border-0
+        bg-[#233c1a]
+        pl-5
+        pr-14
+        text-white
+        shadow-[inset_0_0_1.6em_-0.6em_#714da6]
+        transition-all
+      "
+            >
+              <span className="font-medium tracking-wide">
+                Відправити
+              </span>
+
+              <div
+                className="
+          absolute
+          right-1
+          flex
+          h-9
+          w-9
+          items-center
+          justify-center
+          rounded-lg
+          bg-white
+         
+          transition-all
+          duration-300
+          group-hover:w-[calc(100%-0.5rem)]
+          active:scale-95
+        "
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="
+            h-5
+            w-5
+            text-[#233c1a]
+            transition-transform
+            duration-300
+            group-hover:translate-x-1
+          "
+                >
+                  <path d="M0 0h24v24H0z" fill="none" />
+                  <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
+                </svg>
+              </div>
             </button>
+
+
+
+
+
+
+
 
           </div>
 
           {/* --------------------------------------------------------------- */}
-          <div style={{ backgroundImage: "url('/sasa/i2.jpg')" }} className=" position: relative h-[600px]  bg-cover bg-center text-white" >
+          {/* <div style={{ backgroundImage: "url('/sasa/i2.jpg')" }} className=" position: relative h-[600px]  bg-cover bg-center text-white" > */}
+          <div style={{ backgroundImage: "url('/i2.jpg')" }} className=" position: relative h-[600px]  bg-cover bg-center text-white" >
             <div className="position: absolute z-[999] top-[-30px]">
               <img src="/i4.png" alt="" />
+              {/* <img src="/sasa/i4.png" alt="" /> */}
             </div>
             <h2 className="pt-[60px] font-['Great_Vibes',cursive] text-[35px] ">
               Будемо раді бачити вас на нашому святі!
             </h2>
-            <h1 className="mt-[30px] text-white font-['Tangerine',cursive] text-[70px] text-center leading-none">
-              <span>Саньок</span> <span>та</span> <span>Натаха</span>
-            </h1>
 
           </div>
 
@@ -437,6 +636,6 @@ export default function Home() {
 
       </div>
 
-    </div>
+    </div >
   );
 }
