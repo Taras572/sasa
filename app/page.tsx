@@ -14,7 +14,7 @@ export default function Home() {
     seconds: 0,
     finished: false,
   });
- 
+
 
   useEffect(() => {
     const weddingDate = new Date("2026-07-20T00:00:00").getTime();
@@ -61,7 +61,7 @@ export default function Home() {
 
 
   const [name, setName] = useState("");
-  const [attending, setAttending] = useState(false);
+  const [attending, setAttending] = useState<"yes" | "no" | null>(null);
   const [alcohol, setAlcohol] = useState<string[]>([]);
 
   const toggleAlcohol = (item: string) => {
@@ -72,6 +72,59 @@ export default function Home() {
     );
   };
 
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const submitForm = async () => {
+    setError("");
+
+    // 1. перевірка імені
+    if (!name.trim()) {
+      setError("Введіть ім’я");
+      return;
+    }
+
+    // 2. перевірка відповіді
+    if (attending === null) {
+      setError("Оберіть варіант: буду / не буду");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycbyvXOBVHSQm7W19FSodu6Y3Wo8fk0VKHRaUnle9L0YusIR1n0hpTuDunxgl3V_9y-ad/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            attending,
+            alcohol,
+          }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Дякуємо! 🙌");
+        setName("");
+        setAttending(null);
+        setAlcohol([]);
+      } else {
+        setError("Помилка відправки");
+      }
+    } catch (err) {
+      setError("Сервер не відповідає");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex  justify-center">
@@ -171,7 +224,7 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ЦЕРЕМОНІЯ</h3>
-              <div style={{ backgroundImage: "url('/sasa/wedding.svg')" }}  className="w-15 h-15 mx-auto bg-cover bg-center ">
+              <div style={{ backgroundImage: "url('/sasa/wedding.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center ">
               </div>
               <h3 className="flex items-center justify-center">16:00</h3>
             </div>
@@ -266,19 +319,28 @@ export default function Home() {
             </div>
 
             {/* Чи прийду */}
-            <div className="mb-4 flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={attending}
-                onChange={() => setAttending(!attending)}
-              />
-              <label>Я планую бути на весіллі</label>
-              <input
-                type="checkbox"
-                checked={attending}
-                onChange={() => setAttending(!attending)}
-              />
-              <label> А ніхуя </label>
+            <div className="mb-4 flex flex-col gap-2">
+
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="attending"
+                  checked={attending === "yes"}
+                  onChange={() => setAttending("yes")}
+                />
+                Я планую бути на весіллі
+              </label>
+
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="attending"
+                  checked={attending === "no"}
+                  onChange={() => setAttending("no")}
+                />
+                А ніхуя
+              </label>
+
             </div>
 
             {/* Алкоголь */}
@@ -300,9 +362,19 @@ export default function Home() {
               </div>
             </div>
 
+            {error && (
+              <p className="text-red-600 mt-2 text-sm">
+                {error}
+              </p>
+            )}
+
             {/* Кнопка */}
-            <button className="w-full mt-4 bg-[#233c1a] text-[#fffdeb] p-2 rounded hover:opacity-90">
-              Відправити
+            <button
+              onClick={submitForm}
+              disabled={loading}
+              className="w-full mt-4 bg-[#233c1a] text-[#fffdeb] p-2 rounded hover:opacity-90 disabled:opacity-50"
+            >
+              {loading ? "Відправка..." : "Відправити"}
             </button>
 
           </div>
@@ -315,9 +387,9 @@ export default function Home() {
             <h2 className="pt-[60px] font-['Great_Vibes',cursive] text-[35px] ">
               Будемо раді бачити вас на нашому святі!
             </h2>
-             <h1 className="mt-[30px] text-white font-['Tangerine',cursive] text-[70px] text-center leading-none">
-            <span>Саньок</span> <span>та</span> <span>Натаха</span>
-          </h1>
+            <h1 className="mt-[30px] text-white font-['Tangerine',cursive] text-[70px] text-center leading-none">
+              <span>Саньок</span> <span>та</span> <span>Натаха</span>
+            </h1>
 
           </div>
 
