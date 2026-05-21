@@ -123,8 +123,7 @@ export default function Home() {
     <div className="min-h-screen flex  justify-center">
       <div className="b w-[500px] text-center bg-[#fffdeb]">
 
-        {/* <div style={{ backgroundImage: "url('/sasa/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center"> */}
-        <div style={{ backgroundImage: "url('/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center">
+        <div style={{ backgroundImage: "url('/sasa/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center">
           <h1 className="mt-[-380px] text-olive-300 font-['Great_Vibes',cursive] text-[100px] text-center leading-none">
             <span>Олександр</span> <span>та</span> <span>Наталія</span>
           </h1>
@@ -166,7 +165,7 @@ export default function Home() {
               {days.map((day, index) => (
                 <div key={day} className="w-10 h-10 flex items-center justify-center">
                   {day === 18 ? (
-                    <div style={{ backgroundImage: "url('/i5.svg')" }} className="animate-sway h-[47px] w-[47px] bg-cover bg-center flex items-center justify-center text-red-500">
+                    <div style={{ backgroundImage: "url('/sasa/i5.svg')" }} className="animate-sway h-[47px] w-[47px] bg-cover bg-center flex items-center justify-center text-red-500">
                       {day}
                     </div>
                   ) : (
@@ -184,8 +183,8 @@ export default function Home() {
 
           <div className="bg-[#507c53] position: relative pt-[90px] text-[#fffdeb] pb-[90px]">
             <div className="position: absolute z-[999] top-[-30px]">
-              {/* <img src="/sasa/i4.png" alt="" /> */}
-              <img src="/i4.png" alt="" />
+              <img src="/sasa/i4.png" alt="" />
+              
             </div>
             <div className="pb-[30px]">
               <h2 className="font-['Great_Vibes',cursive] text-[50px] ">
@@ -270,12 +269,12 @@ export default function Home() {
 
 
             </a>
-            {/* <img src="/sasa/i3.png" alt="" /> */}
-            <img src="/i3.png" alt="" />
+            <img src="/sasa/i3.png" alt="" />
+           
 
             <div className="position: absolute z-[999] bottom-[-40px]">
-              {/* <img src="/sasa/i4.png" alt="" /> */}
-              <img src="i4.png" alt="" />
+              <img src="/sasa/i4.png" alt="" />
+              
             </div>
 
           </div>
@@ -283,8 +282,8 @@ export default function Home() {
 
           <div className="bg-[#507c53] position: relative pt-[90px] text-[#fffdeb] pb-[90px] flex flex-col gap-y-[40px] text-xl">
             <div className="position: absolute z-[999] top-[-30px]">
-              {/* <img src="/sasa/i4.png" alt="" /> */}
-              <img src="/i4.png" alt="" />
+              <img src="/sasa/i4.png" alt="" />
+           
             </div>
 
             <h2 className="font-['Great_Vibes',cursive] text-[50px] ">
@@ -293,18 +292,17 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">ВІНЧАННЯ</h3>
-              {/* <div style={{ backgroundImage: "url('/sasa/wedding.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center "></div> */}
-              <div style={{ backgroundImage: "url('/wedding.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center ">
+
+              <div style={{ backgroundImage: "url('/sasa/wedding.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center ">
               </div>
               <h3 className="flex items-center justify-center">12:00</h3>
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center text-[15px]">Церква Різдва Пресвятої Богородиці УГКЦ</h3>
-              {/* <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
-              </div> */}
-              <div style={{ backgroundImage: "url('/church.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
+              <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
               </div>
+             
               <a href="https://maps.app.goo.gl/whvCUaD3Pe1geg9K8?g_st=it">
                 {/* <button
                   className=" w-[130px] text-[20px] mt-2 mb-3 bg-[#233c1a] text-[#fffdeb] p-2 rounded hover:opacity-90 disabled:opacity-50"
@@ -387,10 +385,9 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">БАНКЕТ</h3>
-              {/* <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
-              </div> */}
-              <div style={{ backgroundImage: "url('/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
+              <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
               </div>
+             
               <h3 className="flex items-center justify-center">14:00</h3>
             </div>
 
@@ -398,8 +395,7 @@ export default function Home() {
 
 
             <div className="position: absolute z-[999] bottom-[-40px]">
-              <img src="/i4.png" alt="" />
-              {/* <img src="/sasa/i4.png" alt="" /> */}
+              <img src="/sasa/i4.png" alt="" />
             </div>
 
           </div>
@@ -417,11 +413,10 @@ export default function Home() {
           </div>
 
           {/* ---------------------------------------------------------------------------------------- */}
-          {/* <div style={{ backgroundImage: "url('/sasa/i10.jpg')" }} className="position: relative h-[600px]  bg-cover bg-center flex flex-col gap-20 text-white"> */}
-          <div style={{ backgroundImage: "url('/i10.jpg')" }} className="position: relative h-[600px]  bg-cover bg-center flex flex-col gap-20 text-white">
+          <div style={{ backgroundImage: "url('/sasa/i10.jpg')" }} className="position: relative h-[600px]  bg-cover bg-center flex flex-col gap-20 text-white">
             <div className="position: absolute z-[999] top-[-30px]">
-              {/* <img src="/sasa/i4.png" alt="" /> */}
-              <img src="/i4.png" alt="" />
+              <img src="/sasa/i4.png" alt="" />
+
             </div>
             <h1 className="text-[30px] mt-[90px]">
               Чекаємо на вас через:
@@ -456,8 +451,7 @@ export default function Home() {
 
             </div>
             <div className="position: absolute z-[999] bottom-[-40px]">
-              <img src="/i4.png" alt="" />
-              {/* <img src="/sasa/i4.png" alt="" /> */}
+              <img src="/sasa/i4.png" alt="" />
             </div>
           </div>
           {/* --------------------------------------------------------------------------- */}
@@ -620,11 +614,9 @@ export default function Home() {
           </div>
 
           {/* --------------------------------------------------------------- */}
-          {/* <div style={{ backgroundImage: "url('/sasa/i2.jpg')" }} className=" position: relative h-[600px]  bg-cover bg-center text-white" > */}
-          <div style={{ backgroundImage: "url('/i2.jpg')" }} className=" position: relative h-[600px]  bg-cover bg-center text-white" >
+          <div style={{ backgroundImage: "url('/sasa/i2.jpg')" }} className=" position: relative h-[600px]  bg-cover bg-center text-white" >
             <div className="position: absolute z-[999] top-[-30px]">
-              <img src="/i4.png" alt="" />
-              {/* <img src="/sasa/i4.png" alt="" /> */}
+              <img src="/sasa/i4.png" alt="" />
             </div>
             <h2 className="pt-[60px] font-['Great_Vibes',cursive] text-[35px] ">
               Будемо раді бачити вас на нашому святі!
