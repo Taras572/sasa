@@ -76,55 +76,95 @@ export default function Home() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // const submitForm = async () => {
+  //   setError("");
+
+  //   // 1. перевірка імені
+  //   if (!name.trim()) {
+  //     setError("Введіть ім’я");
+  //     return;
+  //   }
+
+  //   // 2. перевірка відповіді
+  //   if (attending === null) {
+  //     setError("Оберіть варіант: буду / не буду");
+  //     return;
+  //   }
+
+  //   try {
+  //     setLoading(true);
+
+  //     const res = await fetch(
+  //       "https://script.google.com/macros/s/AKfycbyvXOBVHSQm7W19FSodu6Y3Wo8fk0VKHRaUnle9L0YusIR1n0hpTuDunxgl3V_9y-ad/exec",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           name,
+  //           attending,
+  //           alcohol,
+  //         }),
+  //       }
+  //     );
+
+  //     const data = await res.json();
+
+  //     if (data.success) {
+  //       alert("Дякуємо! 🙌");
+  //       setName("");
+  //       setAttending(null);
+  //       setAlcohol([]);
+  //     } else {
+  //       setError("Помилка відправки");
+  //     }
+  //   } catch (err) {
+  //     setError("Сервер не відповідає");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const submitForm = async () => {
-    setError("");
+  setError("");
 
-    // 1. перевірка імені
-    if (!name.trim()) {
-      setError("Введіть ім’я");
-      return;
-    }
+  if (!name.trim()) {
+    setError("Введіть ім’я");
+    return;
+  }
 
-    // 2. перевірка відповіді
-    if (attending === null) {
-      setError("Оберіть варіант: буду / не буду");
-      return;
-    }
+  if (attending === null) {
+    setError("Оберіть варіант: буду / не буду");
+    return;
+  }
 
-    try {
-      setLoading(true);
+  try {
+    setLoading(true);
 
-      const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbyvXOBVHSQm7W19FSodu6Y3Wo8fk0VKHRaUnle9L0YusIR1n0hpTuDunxgl3V_9y-ad/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            attending,
-            alcohol,
-          }),
-        }
-      );
-
-      const data = await res.json();
-
-      if (data.success) {
-        alert("Дякуємо! 🙌");
-        setName("");
-        setAttending(null);
-        setAlcohol([]);
-      } else {
-        setError("Помилка відправки");
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbyvXOBVHSQm7W19FSodu6Y3Wo8fk0VKHRaUnle9L0YusIR1n0hpTuDunxgl3V_9y-ad/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({
+          name,
+          attending,
+          alcohol,
+        }),
       }
-    } catch (err) {
-      setError("Сервер не відповідає");
-    } finally {
-      setLoading(false);
-    }
-  };
+    );
+
+    alert("Дякуємо! 🙌");
+
+    setName("");
+    setAttending(null);
+    setAlcohol([]);
+  } catch (err) {
+    setError("Сервер не відповідає");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen flex  justify-center">
