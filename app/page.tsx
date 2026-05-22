@@ -5,26 +5,33 @@ import Btn from "./button";
 import BtnD from "./buttonD";
 
 export default function Home() {
+  //  /* ---------------- SCROLL REVEAL HOOK ---------------- */
+  function useScrollReveal(threshold = 0.2) {
+    const ref = useRef<HTMLDivElement | null>(null);
+    const [visible, setVisible] = useState(false);
 
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
+    useEffect(() => {
+      const el = ref.current;
+      if (!el) return;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
+      const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-        } else {
-          setVisible(false);
         }
-      },
-      { threshold: 0.2 }
-    );
+      }, { threshold });
 
-    if (ref.current) observer.observe(ref.current);
+      observer.observe(el);
 
-    return () => observer.disconnect();
-  }, []);
+      return () => observer.disconnect();
+    }, [threshold]);
+
+    return { ref, visible };
+  }
+  const hero = useScrollReveal();
+  const wishes = useScrollReveal();
+  const formTitle = useScrollReveal();
+  const calendar = useScrollReveal();
+  const title = useScrollReveal();
 
 
   let array = ["ПН", "ВТ", "CP", "ЧТ", "ПТ", "СБ", "НД"];
@@ -135,34 +142,20 @@ export default function Home() {
           </div>
 
 
-          <div className="ml-[20px] mr-[20px]">
-            <h2 ref={ref} className={`pt-[40px] font-['Great_Vibes',cursive] text-[50px]  transition-all duration-700 ease-out
-          ${visible
-                ? "opacity-100 translate-x-0 blur-0"
-                : "opacity-0 translate-x-10 blur-sm"}`} >
+          <div ref={hero.ref} className={`ml-[20px] mr-[20px] transition-all duration-700 ease-out
+          ${hero.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+            <h2 className={`pt-[40px] font-['Great_Vibes',cursive] text-[50px]  `} >
               Любі Гості!
             </h2>
-            <p className={`
-          transition-all duration-700 ease-out
-          ${visible
-                ? "opacity-100 translate-y-0 blur-0"
-                : "opacity-0 translate-y-10 blur-sm"}`}
-              ref={ref}>
+            <p>
               Один день у цьому році буде для нас дуже особливим і ми хотіли би його провести у колі близьких для нас людей.</p>
-            <p className={`
-            mt-[10px]
-          transition-all duration-700 ease-out
-          ${visible
-                ? "opacity-100 translate-y-0 blur-0"
-                : "opacity-0 translate-y-15 blur-sm"}`} ref={ref}> З великим задоволенням запрошуємо вас відсвяткувати цей день разом!</p>
+            <p className={` mt-[10px]`} > З великим задоволенням запрошуємо вас відсвяткувати цей день разом!</p>
           </div>
 
           {/* ------------------------------------------------------------------------------------ */}
 
-          <div className={`max-w-[350px] mx-auto transition-all duration-700 ease-out
-          ${visible
-                ? "opacity-100 translate-y-0 blur-0"
-                : "opacity-0 translate-x-15 blur-sm"}`} ref={ref}>
+          <div ref={calendar.ref} className={`max-w-[350px] mx-auto  transition-all duration-700 ease-out
+          ${calendar.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-x-20"}`} >
             <h2 className={`font-['Great_Vibes',cursive] text-[50px] `}>
               Липень
             </h2>
@@ -176,10 +169,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className={`grid grid-cols-7 gap-2 transition-all duration-700 ease-out
-          ${visible
-                ? "opacity-100 translate-y-0 blur-0"
-                : "opacity-0 translate-x-5 blur-sm"}`} ref={ref}>
+            <div className={`grid grid-cols-7 gap-2 `} >
               <div className="w-10 h-10 flex items-center justify-center"></div>
               <div className="w-10 h-10 flex items-center justify-center"></div>
               {days.map((day, index) => (
@@ -266,10 +256,8 @@ export default function Home() {
 
           </div>
 
-          <div className={`ml-[20px] mr-[20px] transition-all duration-700 ease-out
-          ${visible
-                ? "opacity-100 translate-y-0 blur-0"
-                : "opacity-0 translate-x-30 blur-sm"}`} ref={ref}>
+          <div ref={wishes.ref} className={`ml-[20px] mr-[20px] transition-all duration-700 ease-out
+          ${wishes.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
             <h2 className="pt-[10px] font-['Great_Vibes',cursive] text-[50px] ">
               Побажання
             </h2>
@@ -325,7 +313,8 @@ export default function Home() {
           </div>
           {/* --------------------------------------------------------------------------- */}
 
-          <div className="ml-[20px] mr-[20px]">
+          <div ref={formTitle.ref} className={`ml-[20px] mr-[20px] transition-all duration-700 ease-out
+          ${formTitle.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-x-10"}`}>
             <h2 className=" font-['Great_Vibes',cursive] text-[50px] ">
               Просимо відповісти на декілька запитань:
             </h2>
@@ -416,7 +405,8 @@ export default function Home() {
             <div className="position: absolute z-[999] top-[-30px]">
               <img src="/sasa/i4.png" alt="" />
             </div>
-            <h2 className="pt-[60px] font-['Great_Vibes',cursive] text-[35px] ">
+            <h2 ref={title.ref} className={`pt-[60px] font-['Great_Vibes',cursive] text-[35px] transition-all duration-700 ease-out
+          ${title.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-x-10"}`}>
               Будемо раді бачити вас на нашому святі!
             </h2>
 
