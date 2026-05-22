@@ -23,3 +23,24 @@ body {
 .animate-sway {
   animation: sway 1.5s ease-in-out infinite;
 }
+
+
+
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+  }
+}
+
+.animate-ring {
+  animation: ring 1.5s infinite;
+}

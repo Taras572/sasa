@@ -1,8 +1,32 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import Btn from "./button";
+import BtnD from "./buttonD";
 
 export default function Home() {
+
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        } else {
+          setVisible(false);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+
   let array = ["ПН", "ВТ", "CP", "ЧТ", "ПТ", "СБ", "НД"];
   let days = Array.from({ length: 31 }, (_, i) => i + 1);
 
@@ -62,21 +86,10 @@ export default function Home() {
 
   const [name, setName] = useState("");
   const [guest, setGuest] = useState("");
-  const [attending, setAttending] = useState<"yes" | "no" | null>(null);
-  const [alcohol, setAlcohol] = useState<string[]>([]);
-
-  const toggleAlcohol = (item: string) => {
-    setAlcohol((prev) =>
-      prev.includes(item)
-        ? prev.filter((i) => i !== item)
-        : [...prev, item]
-    );
-  };
-
+  const [attending, setAttending] = useState<"yes" | "no" | "with_guests" | null>(null);
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
 
   const submitForm = async () => {
     setError("");
@@ -91,32 +104,19 @@ export default function Home() {
       return;
     }
 
-    try {
-      setLoading(true);
+    const fd = new FormData();
+    fd.append("name", name);
+    fd.append("attending", attending);
+    fd.append("guest", guest);
 
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbw-VoO1i4lby-OEgv2QCy1pAfzE-JN1acscbT5YVJ1iXdeCRR5B4QokekOFFTYyvNB8/exec",
-        {
-          method: "POST",
-          body: new URLSearchParams({
-            name,
-            attending,
-            alcohol: alcohol.join(", "),
-          }),
-        }
-      );
+    await fetch("https://script.google.com/macros/s/AKfycbzCQJTLT_aPzldmhe3jcRBxZ0ScjyXg_u7t1BX3t_y-WFpQhN1BWfpkyXEtmLP5orvP/exec", { method: "POST", body: fd });
 
-      alert("Дякуємо! 🙌");
+    setLoading(true)
 
-      setName("");
-      setAttending(null);
-      setAlcohol([]);
+    setName("");
+    setAttending(null);
+    setGuest("");
 
-    } catch (err) {
-      setError("Помилка відправки");
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -136,17 +136,34 @@ export default function Home() {
 
 
           <div className="ml-[20px] mr-[20px]">
-            <h2 className="pt-[40px] font-['Great_Vibes',cursive] text-[50px] ">
+            <h2 ref={ref} className={`pt-[40px] font-['Great_Vibes',cursive] text-[50px]  transition-all duration-700 ease-out
+          ${visible
+                ? "opacity-100 translate-x-0 blur-0"
+                : "opacity-0 translate-x-10 blur-sm"}`} >
               Любі Гості!
             </h2>
-            <p>Один день у цьому році буде для нас дуже особливим і ми хотіли би його провести у колі близьких для нас людей.</p>
-            <p className="mt-[10px]"> З великим задоволенням запрошуємо вас відсвяткувати цей день разом!</p>
+            <p className={`
+          transition-all duration-700 ease-out
+          ${visible
+                ? "opacity-100 translate-y-0 blur-0"
+                : "opacity-0 translate-y-10 blur-sm"}`}
+              ref={ref}>
+              Один день у цьому році буде для нас дуже особливим і ми хотіли би його провести у колі близьких для нас людей.</p>
+            <p className={`
+            mt-[10px]
+          transition-all duration-700 ease-out
+          ${visible
+                ? "opacity-100 translate-y-0 blur-0"
+                : "opacity-0 translate-y-15 blur-sm"}`} ref={ref}> З великим задоволенням запрошуємо вас відсвяткувати цей день разом!</p>
           </div>
 
           {/* ------------------------------------------------------------------------------------ */}
 
-          <div className="max-w-[350px] mx-auto">
-            <h2 className="font-['Great_Vibes',cursive] text-[50px] ">
+          <div className={`max-w-[350px] mx-auto transition-all duration-700 ease-out
+          ${visible
+                ? "opacity-100 translate-y-0 blur-0"
+                : "opacity-0 translate-x-15 blur-sm"}`} ref={ref}>
+            <h2 className={`font-['Great_Vibes',cursive] text-[50px] `}>
               Липень
             </h2>
             <div className="grid grid-cols-7 gap-2">
@@ -159,7 +176,10 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-7 gap-2">
+            <div className={`grid grid-cols-7 gap-2 transition-all duration-700 ease-out
+          ${visible
+                ? "opacity-100 translate-y-0 blur-0"
+                : "opacity-0 translate-x-5 blur-sm"}`} ref={ref}>
               <div className="w-10 h-10 flex items-center justify-center"></div>
               <div className="w-10 h-10 flex items-center justify-center"></div>
               {days.map((day, index) => (
@@ -184,97 +204,22 @@ export default function Home() {
           <div className="bg-[#507c53] position: relative pt-[90px] text-[#fffdeb] pb-[90px]">
             <div className="position: absolute z-[999] top-[-30px]">
               <img src="/sasa/i4.png" alt="" />
-              
+
             </div>
-            <div className="pb-[30px]">
+            <div className="pb-[30px] pl-[30px] pr-[30px]">
               <h2 className="font-['Great_Vibes',cursive] text-[50px] ">
                 Місце проведення
               </h2>
               <p>Navaria Village, Наварія, Львівська область, Україна</p>
             </div>
+
             <a href="https://maps.app.goo.gl/8TsKPmcxDb7uXvnm7" className="flex justify-center">
-              {/* <button
-                className=" w-[130px] text-[20px] mt-2 mb-3 bg-[#233c1a] text-[#fffdeb] p-2 rounded hover:opacity-90 disabled:opacity-50"
-
-              >
-                Локація
-              </button> */}
-
-
-              <button
-                className="
-                mb-4
-        group
-        relative
-        flex
-        h-11
-        w-[200px]
-        cursor-pointer
-        items-center
-        overflow-hidden
-        rounded-xl
-        border-0
-        bg-[#233c1a]
-        pl-5
-        pr-14
-        text-white
-        shadow-[inset_0_0_1.6em_-0.6em_#714da6]
-        transition-all
-      "
-              >
-                <span className="font-medium tracking-wide">
-                  Локація
-                </span>
-
-                <div
-                  className="
-          absolute
-          right-1
-          flex
-          h-9
-          w-9
-          items-center
-          justify-center
-          rounded-lg
-          bg-white
-          
-          transition-all
-          duration-300
-          group-hover:w-[calc(100%-0.5rem)]
-          active:scale-95
-        "
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="
-            h-5
-            w-5
-            text-[#233c1a]
-            transition-transform
-            duration-300
-            group-hover:translate-x-1
-          "
-                  >
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
-                  </svg>
-                </div>
-              </button>
-
-
-
-
-
-
+              <Btn text="Локація"></Btn>
             </a>
-            <img src="/sasa/i3.png" alt="" />
-           
 
+            <img src="/sasa/i3.png" alt="" />
             <div className="position: absolute z-[999] bottom-[-40px]">
               <img src="/sasa/i4.png" alt="" />
-              
             </div>
 
           </div>
@@ -283,7 +228,6 @@ export default function Home() {
           <div className="bg-[#507c53] position: relative pt-[90px] text-[#fffdeb] pb-[90px] flex flex-col gap-y-[40px] text-xl">
             <div className="position: absolute z-[999] top-[-30px]">
               <img src="/sasa/i4.png" alt="" />
-           
             </div>
 
             <h2 className="font-['Great_Vibes',cursive] text-[50px] ">
@@ -297,102 +241,24 @@ export default function Home() {
               </div>
               <h3 className="flex items-center justify-center">12:00</h3>
             </div>
-
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center text-[15px]">Церква Різдва Пресвятої Богородиці УГКЦ</h3>
               <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
               </div>
-             
-              <a href="https://maps.app.goo.gl/whvCUaD3Pe1geg9K8?g_st=it">
-                {/* <button
-                  className=" w-[130px] text-[20px] mt-2 mb-3 bg-[#233c1a] text-[#fffdeb] p-2 rounded hover:opacity-90 disabled:opacity-50"
 
-                >
-                  Локація
-                </button> */}
-
-                <button
-                  className="
-        group
-        relative
-        flex
-        h-11
-        w-full
-        cursor-pointer
-        items-center
-        overflow-hidden
-        rounded-xl
-        border-0
-        bg-[#233c1a]
-        pl-5
-        pr-14
-        text-white
-        shadow-[inset_0_0_1.6em_-0.6em_#714da6]
-        transition-all
-      "
-                >
-                  <span className="font-medium tracking-wide">
-                    Локація
-                  </span>
-
-                  <div
-                    className="
-          absolute
-          right-1
-          flex
-          h-9
-          w-9
-          items-center
-          justify-center
-          rounded-lg
-          bg-white
-          
-          transition-all
-          duration-300
-          group-hover:w-[calc(100%-0.5rem)]
-          active:scale-95
-        "
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="
-            h-5
-            w-5
-            text-[#233c1a]
-            transition-transform
-            duration-300
-            group-hover:translate-x-1
-          "
-                    >
-                      <path d="M0 0h24v24H0z" fill="none" />
-                      <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
-                    </svg>
-                  </div>
-                </button>
-
-
-
-
-
-
-
-
-
+              <a href="https://maps.app.goo.gl/8TsKPmcxDb7uXvnm7" >
+                <Btn text="Локація"></Btn>
               </a>
+
             </div>
 
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center">БАНКЕТ</h3>
               <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
               </div>
-             
+
               <h3 className="flex items-center justify-center">14:00</h3>
             </div>
-
-
-
 
             <div className="position: absolute z-[999] bottom-[-40px]">
               <img src="/sasa/i4.png" alt="" />
@@ -400,7 +266,10 @@ export default function Home() {
 
           </div>
 
-          <div className="ml-[20px] mr-[20px]">
+          <div className={`ml-[20px] mr-[20px] transition-all duration-700 ease-out
+          ${visible
+                ? "opacity-100 translate-y-0 blur-0"
+                : "opacity-0 translate-x-30 blur-sm"}`} ref={ref}>
             <h2 className="pt-[10px] font-['Great_Vibes',cursive] text-[50px] ">
               Побажання
             </h2>
@@ -463,10 +332,7 @@ export default function Home() {
           </div>
 
 
-          {/* -------------------------------------------------------------------------------- */}
-
-          <div className="max-w-[500px] mx-auto p-2 bg-[#fffdeb] text-[#233c1a]">
-            {/* Ім'я */}
+          <div className="w-full max-w-[350px] mx-auto p-2 bg-[#fffdeb] text-[#233c1a]">
             <div className="mb-4">
               <label className="block mb-1">Ваше ім’я</label>
               <input
@@ -478,9 +344,9 @@ export default function Home() {
               />
             </div>
 
-            {/* Чи прийду */}
-            <div className="mb-4 flex flex-col gap-2">
+            <div className="mb-4 flex flex-col gap-2 font-['font-indie',cursive]">
 
+              {/* YES */}
               <label className="flex items-center gap-2">
                 <input
                   type="radio"
@@ -491,26 +357,30 @@ export default function Home() {
                 Я розділю з вами цей день
               </label>
 
+              {/* YES + GUESTS */}
               <label className="flex items-center gap-2">
                 <input
                   type="radio"
                   name="attending"
-                  checked={attending === "yes"}
-                  onChange={() => setAttending("yes")}
+                  checked={attending === "with_guests"}
+                  onChange={() => setAttending("with_guests")}
                 />
                 Я буду з
               </label>
-              <div className="mb-4">
-                <input
-                  type="text"
-                  value={guest}
-                  // onChange={(e) => setName(e.target.value)}
-                  className="w-full border border-[#233c1a] p-2 rounded"
-                  placeholder="Імена гостей"
-                />
-              </div>
 
+              {attending === "with_guests" && (
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    value={guest}
+                    onChange={(e) => setGuest(e.target.value)}
+                    className="w-full border border-[#233c1a] p-2 rounded"
+                    placeholder="Імена гостей"
+                  />
+                </div>
+              )}
 
+              {/* NO */}
               <label className="flex items-center gap-2">
                 <input
                   type="radio"
@@ -518,98 +388,26 @@ export default function Home() {
                   checked={attending === "no"}
                   onChange={() => setAttending("no")}
                 />
-                Я нажаль незможу
+                Я нажаль не зможу
               </label>
 
             </div>
-
-
 
             {error && (
               <p className="text-red-600 mt-2 text-sm">
                 {error}
               </p>
             )}
-
-            {/* Кнопка */}
-            {/* <button
-              onClick={submitForm}
-              disabled={loading}
-              className="w-full mt-4 bg-[#233c1a] text-[#fffdeb] p-2 rounded hover:opacity-90 disabled:opacity-50"
-            >
-              {loading ? "Відправка..." : "Відправити"}
-            </button> */}
-
-
-
-
-            <button
-              className="
-        group
-        relative
-        flex
-        h-11
-        w-full
-        cursor-pointer
-        items-center
-        overflow-hidden
-        rounded-xl
-        border-0
-        bg-[#233c1a]
-        pl-5
-        pr-14
-        text-white
-        shadow-[inset_0_0_1.6em_-0.6em_#714da6]
-        transition-all
-      "
-            >
-              <span className="font-medium tracking-wide">
-                Відправити
-              </span>
-
-              <div
-                className="
-          absolute
-          right-1
-          flex
-          h-9
-          w-9
-          items-center
-          justify-center
-          rounded-lg
-          bg-white
-         
-          transition-all
-          duration-300
-          group-hover:w-[calc(100%-0.5rem)]
-          active:scale-95
-        "
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="
-            h-5
-            w-5
-            text-[#233c1a]
-            transition-transform
-            duration-300
-            group-hover:translate-x-1
-          "
-                >
-                  <path d="M0 0h24v24H0z" fill="none" />
-                  <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
-                </svg>
+            {loading ?
+              <div className=" text-[50px] ">
+                <p className="text-[20px] font-['font-indie',cursive] ">Ваша відповідь успішно відправлена</p>
+                <h2 className="font-['Great_Vibes',cursive]">Дякуємо!</h2>
               </div>
-            </button>
-
-
-
-
-
-
-
+              :
+              <div>
+                <BtnD onClick={submitForm}></BtnD>
+              </div>
+            }
 
           </div>
 
