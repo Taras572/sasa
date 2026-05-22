@@ -130,8 +130,8 @@ export default function Home() {
     <div className="min-h-screen flex  justify-center">
       <div className="b w-[500px] text-center bg-[#fffdeb]">
 
-        <div style={{ backgroundImage: "url('/sasa/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center">
-          <h1 className="mt-[-380px] text-olive-300 font-['Great_Vibes',cursive] text-[100px] text-center leading-none">
+        <div style={{ backgroundImage: "url('/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center">
+          <h1 className="mt-[-380px] text-olive-300 font-['Great_Vibes',cursive] text-[80px] min-[489px]:text-[100px] text-center leading-none">
             <span>Олександр</span> <span>та</span> <span>Наталія</span>
           </h1>
         </div>
@@ -231,9 +231,10 @@ export default function Home() {
               </div>
               <h3 className="flex items-center justify-center">12:00</h3>
             </div>
+
             <div className="grid grid-cols-3 gap-2 px-[30px]">
               <h3 className="flex items-center justify-center text-[15px]">Церква Різдва Пресвятої Богородиці УГКЦ</h3>
-              <div style={{ backgroundImage: "url('/sasa/food.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
+              <div style={{ backgroundImage: "url('/sasa/church.svg')" }} className="w-15 h-15 mx-auto bg-cover bg-center">
               </div>
 
               <a href="https://maps.app.goo.gl/8TsKPmcxDb7uXvnm7" >
@@ -261,8 +262,7 @@ export default function Home() {
             <h2 className="pt-[10px] font-['Great_Vibes',cursive] text-[50px] ">
               Побажання
             </h2>
-            <img className="mx-auto h-[80px]" src="/i9.png" alt="" />
-            {/* <img className="mx-auto h-[80px]" src="/sasa/i9.png" alt="" /> */}
+            <img className="mx-auto h-[80px]" src="/sasa/i9.png" alt="" />
             <p>Просимо вас не дарувати нам квіти, ми не встигнемо насолодитися їх красою.
               Замість букетів будемо щасливі отримати книгу
               з Вашим підписом та побажанням —
