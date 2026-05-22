@@ -130,7 +130,7 @@ export default function Home() {
     <div className="min-h-screen flex  justify-center">
       <div className="b w-[500px] text-center bg-[#fffdeb]">
 
-        <div style={{ backgroundImage: "url('/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center">
+        <div style={{ backgroundImage: "url('/sasa/i1.jpg')" }} className="h-[600px]  bg-cover bg-center flex items-center justify-center">
           <h1 className="mt-[-380px] text-olive-300 font-['Great_Vibes',cursive] text-[80px] min-[489px]:text-[100px] text-center leading-none">
             <span>Олександр</span> <span>та</span> <span>Наталія</span>
           </h1>
