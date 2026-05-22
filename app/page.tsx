@@ -93,7 +93,7 @@ export default function Home() {
 
   const [name, setName] = useState("");
   const [guest, setGuest] = useState("");
-  const [attending, setAttending] = useState<"yes" | "no" | "with_guests" | null>(null);
+  const [attending, setAttending] = useState<"Я прийду" | "А ніхуя" | "Прийду з табуном" | null>(null);
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -340,8 +340,8 @@ export default function Home() {
                 <input
                   type="radio"
                   name="attending"
-                  checked={attending === "yes"}
-                  onChange={() => setAttending("yes")}
+                  checked={attending === "Я прийду"}
+                  onChange={() => setAttending("Я прийду")}
                 />
                 Я розділю з вами цей день
               </label>
@@ -351,13 +351,13 @@ export default function Home() {
                 <input
                   type="radio"
                   name="attending"
-                  checked={attending === "with_guests"}
-                  onChange={() => setAttending("with_guests")}
+                  checked={attending === "Прийду з табуном"}
+                  onChange={() => setAttending("Прийду з табуном")}
                 />
                 Я буду з
               </label>
 
-              {attending === "with_guests" && (
+              {attending === "Прийду з табуном" && (
                 <div className="mb-4">
                   <input
                     type="text"
@@ -374,8 +374,8 @@ export default function Home() {
                 <input
                   type="radio"
                   name="attending"
-                  checked={attending === "no"}
-                  onChange={() => setAttending("no")}
+                  checked={attending === "А ніхуя"}
+                  onChange={() => setAttending("А ніхуя")}
                 />
                 Я нажаль не зможу
               </label>
